@@ -1,0 +1,46 @@
+<div class="main-content">
+
+    <div class="container-fluid">
+        <div class="col-md-auto">
+            <div class="card">
+                <div class="card-header card-header-info">
+                    <h3 class="card-title font-weight-bold">Assets</h3>
+                    <h4 class ="card-description">Assign asset to {{message.body}} </h4>
+                </div>
+                <div class="card-body">
+
+                    <form [formGroup]="Form" (ngSubmit)="onSubmit()">
+
+                    <mat-form-field appearance="outline">
+                                <mat-label>Select Asset to give</mat-label>
+                                <mat-select  formControlName="asset">
+                                    <mat-option *ngFor="let asset of assetList" [value]="asset.id ">
+                                        {{asset.name +" "+ asset.make  +" "+ asset.model  +" "+ asset.serialNumber}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        <div class="row justify-content-sm-around text-left">
+                        <mat-form-field appearance="outline">
+                            <mat-label>State of Assignment</mat-label>
+                            <mat-select matNativeControl required  formControlName="assetState">
+                                <mat-option [value]="1">Borrowing</mat-option>
+                                <mat-option [value]="2">Permanent</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        </div>
+                        <mat-label>Has the asset been received yet?</mat-label>
+                        <div class="mx-lg-1">
+                            <mat-radio-group aria-label="Select an option"  formControlName="received">
+                            <mat-radio-button value="false">No</mat-radio-button>
+                            <mat-radio-button class="px-sm-5" value="true">Yes</mat-radio-button>
+                        </mat-radio-group></div>
+
+                        <button mat-raised-button class="btn btn-info pull-right btn-round">Save</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

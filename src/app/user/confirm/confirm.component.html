@@ -1,0 +1,71 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header card-header-info">
+                <h3 class="card-title"> Confirm Asset</h3>
+                <h4 class="card-description"> Review Request and receive asset</h4>
+            </div>
+            <div class="card-body">
+                <div class=" align-center table-container">
+                    <mat-accordion>
+                        <mat-expansion-panel hideToggle>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                   Asset Details
+                                </mat-panel-title>
+                                <mat-panel-description>
+                              See the details of the assigned asset 
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+                            <mat-list>
+                                <mat-list-item >
+                                   <div class="row container-fluid">
+                                       <div class=" col"  ><h4 class="font-weight-bold">Name:</h4></div>
+                                       <div class="col"> {{info.name}}</div>
+                                   </div>
+                                    </mat-list-item>
+                                <mat-divider></mat-divider>
+                                <mat-list-item >
+                                    <div class="row container-fluid">
+                                        <div class="font-weight-bold col"  ><h4 class="font-weight-bold">Model:</h4></div>
+                                        <div class="col"> {{info.model}}</div>
+                                    </div>
+                                </mat-list-item>
+                                <mat-divider></mat-divider>
+                                <mat-list-item >
+                                    <div class="row container-fluid">
+                                        <div class="font-weight-bold col"  ><h4 class="font-weight-bold">Make:</h4></div>
+                                        <div class="col"> {{info.make}}</div>
+                                    </div>
+                                </mat-list-item>
+                                <mat-divider></mat-divider>
+                                <mat-list-item >
+                                    <div class="row container-fluid">
+                                        <div class="font-weight-bold col"  ><h4 class="font-weight-bold">Serial number:</h4></div>
+                                        <div class="col">{{info.serialNumber}}</div>
+                                    </div>
+                                </mat-list-item>
+                            </mat-list>
+                        </mat-expansion-panel>
+                        </mat-accordion>
+
+
+                <h3>Confirm Receiving Asset</h3>
+                    <mat-divider></mat-divider>
+
+                    <div class="row justify-content-sm-around text-left">
+                        <h3> <p>Have you received this Asset?</p></h3>
+
+                        <div class="row justify-content-sm-around text-left">
+
+                            <div class="col-sm"> <a (click)="closeDialog()" class="btn btn-outline-danger btn-round ">No</a></div>
+                            <div class="col-sm"> <a (click)="confirm()" class="btn btn-success btn-round">Yes</a></div>
+
+                    </div>
+            </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>

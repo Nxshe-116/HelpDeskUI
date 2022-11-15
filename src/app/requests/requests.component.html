@@ -1,0 +1,226 @@
+<div class="main-content">
+  <div class="container-fluid">
+
+
+      <mat-tab-group  mat-align-tabs="center">
+          <mat-tab label="Pending Requests">  <div class="card">
+              <div class="card-header card-header-info">
+                  <h3 class="card-title">Requests</h3>
+                  <h4 class="card-description"> Approve or Deny Requests</h4>
+              </div>
+              <div class="card-body">
+                  <div class=" align-center table-container">
+                      <table class="table" mat-table [dataSource]="requestsDataSource" >
+                          <!-- Account Number Column -->
+                          <ng-container matColumnDef="request-id">
+                              <th class="text-black " mat-header-cell *matHeaderCellDef ><h5>
+                                  <b>Request No.</b>
+                              </h5></th>
+                              <td   mat-cell *matCellDef="let element"> {{element.id}} </td>
+                          </ng-container>
+
+                          <!-- Account Number Column -->
+                          <ng-container matColumnDef="request-name">
+                              <th class="text-black" mat-header-cell *matHeaderCellDef><h5>
+                                  <b>Requested By</b>
+                              </h5></th>
+                              - <td   mat-cell *matCellDef="let element"> {{element.requestedBy}} </td>
+                          </ng-container>
+
+                          <!-- Account Name Column -->
+                          <ng-container matColumnDef="request-message">
+                              <th class="text-black" mat-header-cell *matHeaderCellDef><h5>
+                                  <b>Description </b>
+                              </h5></th>
+                              <td  mat-cell *matCellDef="let element"> {{element.requestMessage}} </td>
+                          </ng-container>
+                          <!-- Account Name Column -->
+                          <ng-container matColumnDef="request-type">
+                              <th class="text-black " mat-header-cell *matHeaderCellDef><h5>
+                                  <b>Requested Asset </b>
+                              </h5></th>
+                              <td  mat-cell *matCellDef="let element"> {{element.assetype }} </td>
+                          </ng-container>
+
+                          <!-- Account Name Column -->
+                          <ng-container matColumnDef="request-date">
+                              <th class="text-black " mat-header-cell *matHeaderCellDef><h5>
+                                  <b>Date of Request </b>
+                              </h5></th>
+                              <td  mat-cell *matCellDef="let element"> {{element.requestedOn | date: 'MMM d, y, h:mm:ss '}} </td>
+                          </ng-container>
+
+
+                          <ng-container matColumnDef="approve">
+                              <th class="text-black  px-lg-5" mat-header-cell *matHeaderCellDef><h5><b> Approve
+                              </b></h5></th>
+                              <td class="px-lg-5 " style="color: forestgreen"  mat-cell *matCellDef="let element"
+                              >
+                                  <button  (click) = 'confirmRequest(element)'
+                                           mat-raised-button type="button" matTooltip="Approve "
+                                           [matTooltipPosition]="'above'"
+                                           class="btn btn btn-link btn-sm btn-just-icon" style="color: forestgreen" >
+                                      <i class="material-icons">done</i>
+                                  </button>
+                          </ng-container>
+
+                          <ng-container matColumnDef="deny" >
+                              <th class="text-black px-lg-5" mat-header-cell *matHeaderCellDef ><h5><b>
+                                  Deny  </b></h5></th>
+                              <td  class="px-lg-5 " style="color: red" mat-cell *matCellDef="let element"
+                              >
+                                  <button (click) = 'denyRequest(element)'
+                                          mat-raised-button type="button" matTooltip="Deny    "
+                                          [matTooltipPosition]="'above'"
+                                          class="btn btn-danger btn-link btn-sm btn-just-icon">
+                                      <i class="material-icons">close</i>
+                                  </button>
+                              </td>
+
+                          </ng-container>
+                          <tr mat-header-row *matHeaderRowDef="requestColumns"></tr>
+                          <tr mat-row *matRowDef="let row; columns: requestColumns;"></tr>
+                      </table>
+
+                  </div>
+                  <mat-paginator #paginator = "matPaginator"
+                                 [length]="requestsDataSource.data.length"
+                                 [pageSize]="5"
+                                 [pageSizeOptions]="[1,5,10]"
+                                 showFirstLastButtons
+                                 aria-label="Select page">
+                  </mat-paginator>
+              </div>
+
+          </div> </mat-tab>
+          <mat-tab label="Accepted">  <div class="card">
+              <div class="card-header card-header-info">
+                  <h3 class="card-title">Requests</h3>
+                  <h4 class="card-description"> Accepted Requests</h4>
+              </div>
+              <div class="card-body">
+                  <div class=" align-center table-container">
+                      <table class="table" mat-table [dataSource]="acceptedRequestsDataSource" >
+                          <!-- Account Number Column -->
+                          <ng-container matColumnDef="request-id">
+                              <th class="text-black " mat-header-cell *matHeaderCellDef ><h5>
+                                  <b>Request No.</b>
+                              </h5></th>
+                              <td   mat-cell *matCellDef="let element"> {{element.id}} </td>
+                          </ng-container>
+
+                          <!-- Account Number Column -->
+                          <ng-container matColumnDef="request-name">
+                              <th class="text-black" mat-header-cell *matHeaderCellDef><h5>
+                                  <b>Requested By</b>
+                              </h5></th>
+                              - <td   mat-cell *matCellDef="let element"> {{element.requestedBy}} </td>
+                          </ng-container>
+
+                          <!-- Account Name Column -->
+                          <ng-container matColumnDef="request-message">
+                              <th class="text-black" mat-header-cell *matHeaderCellDef><h5>
+                                  <b>Description </b>
+                              </h5></th>
+                              <td  mat-cell *matCellDef="let element"> {{element.requestMessage}} </td>
+                          </ng-container>
+                          <!-- Account Name Column -->
+                          <ng-container matColumnDef="request-type">
+                              <th class="text-black " mat-header-cell *matHeaderCellDef><h5>
+                                  <b>Requested Asset </b>
+                              </h5></th>
+                              <td  mat-cell *matCellDef="let element"> {{element.assetype }} </td>
+                          </ng-container>
+
+                          <!-- Account Name Column -->
+                          <ng-container matColumnDef="request-date">
+                              <th class="text-black " mat-header-cell *matHeaderCellDef><h5>
+                                  <b>Date of Request </b>
+                              </h5></th>
+                              <td  mat-cell *matCellDef="let element"> {{element.requestedOn | date: 'MMM d, y, h:mm:ss '}} </td>
+                          </ng-container>
+
+
+
+                          <tr mat-header-row *matHeaderRowDef="requests"></tr>
+                          <tr mat-row *matRowDef="let row; columns: requests;"></tr>
+                      </table>
+
+                  </div>
+                  <mat-paginator #acceptedPaginator = "matPaginator"
+                                 [length]="acceptedRequestsDataSource.data.length"
+                                 [pageSize]="5"
+                                 [pageSizeOptions]="[1,5,10]"
+                                 showFirstLastButtons
+                                 aria-label="Select page">
+                  </mat-paginator>
+              </div>
+
+          </div></mat-tab>
+          <mat-tab label="Denied">   <div class="card">
+              <div class="card-header card-header-info">
+                  <h3 class="card-title">Requests</h3>
+                  <h4 class="card-description"> Rejected Requests</h4>
+              </div>
+              <div class="card-body">
+                  <div class=" align-center table-container">
+                      <table class="table" mat-table [dataSource]="rejectedRequestsDataSource" >
+                          <!-- Account Number Column -->
+                          <ng-container matColumnDef="request-id">
+                              <th class="text-black " mat-header-cell *matHeaderCellDef ><h5>
+                                  <b>Request No.</b>
+                              </h5></th>
+                              <td   mat-cell *matCellDef="let element"> {{element.id}} </td>
+                          </ng-container>
+
+                          <!-- Account Number Column -->
+                          <ng-container matColumnDef="request-name">
+                              <th class="text-black" mat-header-cell *matHeaderCellDef><h5>
+                                  <b>Requested By</b>
+                              </h5></th>
+                              - <td   mat-cell *matCellDef="let element"> {{element.requestedBy}} </td>
+                          </ng-container>
+
+                          <!-- Account Name Column -->
+                          <ng-container matColumnDef="request-message">
+                              <th class="text-black" mat-header-cell *matHeaderCellDef><h5>
+                                  <b>Description </b>
+                              </h5></th>
+                              <td  mat-cell *matCellDef="let element"> {{element.requestMessage}} </td>
+                          </ng-container>
+                          <!-- Account Name Column -->
+                          <ng-container matColumnDef="request-type">
+                              <th class="text-black " mat-header-cell *matHeaderCellDef><h5>
+                                  <b>Requested Asset </b>
+                              </h5></th>
+                              <td  mat-cell *matCellDef="let element"> {{element.assetype }} </td>
+                          </ng-container>
+
+                          <!-- Account Name Column -->
+                          <ng-container matColumnDef="request-date">
+                              <th class="text-black " mat-header-cell *matHeaderCellDef><h5>
+                                  <b>Date of Request </b>
+                              </h5></th>
+                              <td  mat-cell *matCellDef="let element"> {{element.requestedOn | date: 'MMM d, y, h:mm:ss '}} </td>
+                          </ng-container>
+
+                          <tr mat-header-row *matHeaderRowDef="requests"></tr>
+                          <tr mat-row *matRowDef="let row; columns: requests;"></tr>
+                      </table>
+
+                  </div>
+                  <mat-paginator #paginator = "matPaginator"
+                                 [length]="rejectedRequestsDataSource.data.length"
+                                 [pageSize]="5"
+                                 [pageSizeOptions]="[1,5,10]"
+                                 showFirstLastButtons
+                                 aria-label="Select page">
+                  </mat-paginator>
+              </div>
+
+          </div></mat-tab>
+      </mat-tab-group>
+
+
+  </div>
+</div>

@@ -1,0 +1,21 @@
+::ng-deep.success-snack {
+    color:white;
+    background: #09af00;
+    justify-content: center;
+    text-align: center;
+
+}
+
+::ng-deep.warn-snack {
+    color:white;
+    text-align: center;
+justify-content: center;
+    background: orangered;
+}
+
+::ng-deep.info-snack {
+    color:white;
+    text-align: center;
+    justify-content: center;
+    background: #0d9ace;
+}

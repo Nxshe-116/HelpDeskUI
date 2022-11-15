@@ -1,0 +1,42 @@
+<div class="main-content">
+
+    <div class="container-fluid">
+        <div class="col-md-auto">
+            <div class="card">
+                <div class="card-header card-header-info">
+                    <h3 class="card-title font-weight-bold">Add Supplier</h3>
+                </div>
+                <div class="card-body">
+
+                   <form [formGroup]="Form" (ngSubmit)="onSubmit()">
+
+                        <mat-form-field appearance="fill">
+                            <mat-label>Name</mat-label>
+                            <input matInput formControlName="name">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Address</mat-label>
+                            <input matInput formControlName="address">
+                        </mat-form-field>
+                        <div class="row justify-content-sm-around text-left">
+                            <mat-form-field appearance="outline" class="px-sm-2">
+                                <mat-label>Email</mat-label>
+                                <input matInput class="example-right-align"  formControlName="emailAddress" >
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" floatLabel="always">
+                                <mat-label>Contact Number</mat-label>
+                                <input matInput  class="example-right-align"  formControlName="contact" >
+
+                            </mat-form-field>
+                        </div>
+
+                        <button mat-raised-button  class="btn btn-info pull-right btn-round">Add Supplier</button>
+                        <button mat-raised-button [mat-dialog-close]="" class=" btn-round btn btn-danger pull-right ">Cancel</button>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

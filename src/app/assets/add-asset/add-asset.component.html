@@ -1,0 +1,80 @@
+<div class="main-content">
+
+    <div class="container-fluid">
+        <div class="col-md-auto">
+            <div class="card">
+                <div class="card-header card-header-info">
+                    <h3 class="card-title font-weight-bold">Assets</h3>
+                    <h4 class ="card-description">Add new assets to inventory </h4>
+                </div>
+                <div class="card-body">
+
+                 <form [formGroup]="assetForm" (ngSubmit)="onSubmit()">
+
+                        <div class="row justify-content-sm-around text-left">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Select Asset Type</mat-label>
+                                <mat-select formControlName="assetTypeId">
+                                    <mat-option *ngFor="let asset of assetTypeList" [value]="asset.id " >
+                                        {{asset.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Select Suppler</mat-label>
+                                <mat-select  formControlName="supplierId">
+                                    <mat-option *ngFor="let supplier of supplier" [value]="supplier.id">
+                                        {{supplier.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                        </div>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Name</mat-label>
+                            <input matInput formControlName="name" >
+                        </mat-form-field>
+
+                        <div class="row justify-content-sm-around text-left">
+                            <mat-form-field appearance="outline" class="px-sm-2">
+                                <mat-label>Make</mat-label>
+                                <input matInput class="example-right-align"  formControlName="make" >
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" floatLabel="always">
+                                <mat-label>Model</mat-label>
+                                <input matInput  class="example-right-align"  formControlName="model" >
+
+                            </mat-form-field>
+                        </div>
+
+
+                     <div class="row justify-content-sm-around text-left">
+                         <mat-form-field appearance="outline">
+                             <mat-label>Serial Number</mat-label>
+                             <input matInput formControlName="serialNumber">
+                         </mat-form-field>
+                         <mat-form-field appearance="outline" floatLabel="always">
+                             <mat-label>Warranty</mat-label>
+                             <input matInput  class="example-right-align"  formControlName="warranty" >
+
+                         </mat-form-field>
+
+
+                     </div>
+                     <mat-form-field appearance="outline">
+                         <mat-label>Date added</mat-label>
+                         <input matInput type="date" placeholder="DateOfPurchase" formControlName="DateOfPurchase" id="DateOfPurchase" >
+                         <mat-error *ngIf="assetForm.controls.DateOfPurchase.touched && assetForm.controls.DateOfPurchase.invalid">
+                             <span *ngIf="assetForm.controls.DateOfPurchase.errors.required">Please enter Payment Date.</span>
+                         </mat-error>
+                     </mat-form-field>
+                     <button mat-raised-button (click)="closeDialog()" class="btn btn-info pull-right btn-round">Add Asset</button>
+                        <button mat-raised-button [mat-dialog-close]="" class=" btn-round btn btn-danger pull-right ">Cancel</button>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

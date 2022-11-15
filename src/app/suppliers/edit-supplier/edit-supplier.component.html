@@ -1,0 +1,54 @@
+<div class="main-content">
+
+    <div class="container-fluid">
+        <div class="col-md-auto">
+            <div class="card">
+                <div class="card-header card-header-info">
+                    <h3 class="card-title font-weight-bold"> Supplier : {{message.message}}</h3>
+                    <h4 class="card-description">ID:  {{message.title}} </h4>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="Form" (ngSubmit)="onSubmit()">
+
+                        <mat-form-field appearance="fill">
+
+                            <mat-label>Id</mat-label>
+                            <input matInput formControlName="id" placeholder="{{message.title}}"
+                                   [matAutocomplete]="auto">
+                            <mat-autocomplete #auto="matAutocomplete">
+                                <mat-option *ngFor="let option of message | async" [value]="option.title">
+                                    {{option}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+
+                            <mat-label>Name</mat-label>
+                            <input matInput formControlName="name" placeholder="{{message.message}}">
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Address</mat-label>
+                            <input matInput formControlName="address">
+                        </mat-form-field>
+                        <div class="row justify-content-sm-around text-left">
+                            <mat-form-field appearance="fill" class="px-sm-2">
+                                <mat-label>Email</mat-label>
+                                <input matInput class="example-right-align"  formControlName="emailAddress" >
+                            </mat-form-field>
+
+                            <mat-form-field appearance="fill" floatLabel="always">
+                                <mat-label>Contact Number</mat-label>
+                                <input matInput  class="example-right-align"  formControlName="contact" >
+
+                            </mat-form-field>
+                        </div>
+
+                        <button mat-raised-button  class="btn btn-info pull-right btn-round">Save </button>
+                        <button mat-raised-button (click)= "closeDialog()" class=" btn-round btn btn-danger pull-right ">Cancel</button>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

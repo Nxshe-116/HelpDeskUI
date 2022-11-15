@@ -1,0 +1,43 @@
+<div class="main-content">
+
+    <div class="container-fluid">
+        <div class="col-md-auto">
+            <div class="card">
+                <div class="card-header card-header-info">
+                    <h3 class="card-title font-weight-bold">Return Asset</h3>
+                    <h4 class ="card-description"> </h4>
+                </div>
+                <div class="card-body">
+
+                    <form [formGroup]="Form" (ngSubmit)="onSubmit()">
+
+                        <div class="row justify-content-sm-around text-left align-items-center">
+                            <h4>Select Asset to return</h4>
+                            <mat-form-field appearance="outline">
+                                <mat-label> Asset </mat-label>
+                                <mat-select formControlName="asset">
+                                    <mat-option *ngFor="let asset of assets" [value]="asset.id " >
+                                        {{asset.name}} {{asset.make}} {{asset.model}}   {{asset.serialNumber}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="py-sm-4 row ">
+                            <div class="col-md-12">
+                                <label>Reason for return</label>
+                                <mat-form-field class="example-full-width">
+                                    <textarea matInput placeholder=""  formControlName="requestMessage" ></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <button mat-raised-button (click)="closeDialog()" class="btn btn-info pull-right btn-round">Save</button>
+                        <button mat-raised-button [mat-dialog-close]="" class=" btn-round btn btn-danger pull-right ">Cancel</button>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+<div class="main-content " >
+    <div >
+        <div class="row align-items-center justify-content-center">
+            <div class="align-center col-md-6">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">USER LOGIN</h4>
+                        <p class="card-category">Please enter your TelOne username and password below:</p>
+                    </div>
+                    <div class="card-body" align="center">
+                        <div class="container" align="center">
+
+                            <form [formGroup]="loginForm" (submit)="loginUser(loginForm.value)">
+                                <div>
+                                    <mat-form-field class="form-field">
+                                        <mat-label> Username
+                                        </mat-label>
+                                        <input matInput formControlName="Username" type="text">
+                                        <mat-error
+                                                *ngIf="loginForm.controls.Username.touched && loginForm.controls.Username.invalid">
+                                            <span *ngIf="loginForm.controls.Username.errors.required">Please enter username.</span>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div>
+                                    <mat-form-field class="form-field">
+                                        <mat-label> Password
+                                        </mat-label>
+                                        <input matInput formControlName="Password" type="Password" >
+                                        <mat-error
+                                                *ngIf="loginForm.controls.Password.touched && loginForm.controls.Password.invalid">
+                                            <span *ngIf="loginForm.controls.Password.errors.required">Please enter password.</span>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <button mat-raised-button type="submit" class="btn btn-info btn-round pull-center"
+                                        [disabled]="loginForm.invalid">LOGIN
+                                </button>
+
+                            </form>
+
+
+
+
+
+
+
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

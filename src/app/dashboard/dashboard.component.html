@@ -1,0 +1,186 @@
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-lg-3 col-md-6 col-sm-6" routerLink="/assets">
+              <div class="card card-stats">
+                  <div class="card-header card-header-warning card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">laptop</i>
+                      </div>
+                      <p class="card-category">Assets</p>
+                      <h3 class="card-title">{{assets}}</h3>
+                  </div>
+
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6"  routerLink="/helpdesk-requests">
+              <div class="card card-stats">
+                  <div class="card-header card-header-success card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">notifications</i>
+                      </div>
+                      <p class="card-category">Requests</p>
+                      <h3 class="card-title">{{requests}}</h3>
+                  </div>
+
+                  </div>
+              </div>
+
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-danger card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">info_outline</i>
+                      </div>
+                      <p class="card-category">Returned Assets</p>
+                      <h3 class="card-title">{{returnedAssets}}</h3>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-info card-header-icon">
+                      <div class="card-icon">
+                          <i class="fa fa-clone"></i>
+                      </div>
+                      <p class="card-category">Assigned</p>
+                      <h3 class="card-title">{{assignedAssets}}</h3>
+
+              </div>
+          </div>
+      </div>
+      <div class="container">
+          <div class="row">
+
+          <div class="col-lg-6">
+              <div class="card ">
+                  <div class="card-header card-header-info">
+                      <h4>   Users in Domain</h4>
+                  </div>
+                  <div class="card-body">
+                      <br>
+                      <div>
+                          <mat-form-field class="col-md-6">
+                              <mat-label>Search for user...</mat-label>
+                              <input matInput (keyup)="usersFilter($event)">
+                          </mat-form-field>
+                      </div>
+
+                                          <div class=" align-center table-container">
+                                              <table class="table" mat-table [dataSource]="usersDataSource" >
+                                                  <!-- Account Number Column -->
+                                                  <ng-container matColumnDef="user">
+                                                      <th class="text-black  " mat-header-cell *matHeaderCellDef><h5>
+                                                          <b>Name</b>
+                                                      </h5></th>
+                                                      - <td class=""   mat-cell *matCellDef="let element"> {{element.username}} </td>
+                                                  </ng-container>
+
+
+                                                  <ng-container matColumnDef="view" >
+                                                      <th class="text-black " mat-header-cell *matHeaderCellDef ><h5><b>
+                                                      </b></h5></th>
+                                                      <td  class="" style="color: #0b75c9" mat-cell *matCellDef="let element">
+                                <span (click)="viewAssignedAssets(element)"> Assigned Assets   <button
+                                        mat-raised-button type="button" matTooltip="view asset "
+                                        [matTooltipPosition]="'above'"
+                                        class="btn btn-info btn-link btn-sm btn-just-icon">
+                                            <i class="material-icons"> computer </i>
+                                        </button></span>
+                                                      </td>
+
+                                                  </ng-container>
+                                                  <tr mat-header-row *matHeaderRowDef="usersColumns"></tr>
+                                                  <tr mat-row *matRowDef="let row; columns: usersColumns;"></tr>
+                                              </table>
+
+
+                                          </div>
+
+                                      </div>
+                                      <mat-paginator
+                                          #usersPaginator = "matPaginator"
+                                          [pageSizeOptions]="[1, 5, 10]"
+                                          [pageSize]="5"
+                                          [length]="usersDataSource.data.length"
+                                          showFirstLastButtons >
+                                      </mat-paginator>
+                                  </div>
+                              </div>
+              <div class="col-lg-6">
+              <div class="card ">
+                  <div class="card-header card-header-danger ">
+                      <h4>Returned Assets</h4>
+                  </div>
+                  <div class="card-body">
+                      <br>
+                      <div>
+                          <mat-form-field class="col-md-6">
+                              <mat-label>Search for asset...</mat-label>
+                              <input matInput (keyup)="assetsFilter($event)" placeholder="e.g. Lenovo">
+                          </mat-form-field>
+                      </div>
+                      <div class=" align-center table-container">
+                          <table class="table" mat-table [dataSource]="assetsDataSource" >
+                              <!-- Account Number Column -->
+                              <ng-container matColumnDef="asset">
+                                  <th class="text-black  " mat-header-cell *matHeaderCellDef><h5>
+                                      <b>Asset</b>
+                                  </h5></th>
+                                  - <td class=""   mat-cell *matCellDef="let element"> {{element.asset}} </td>
+                              </ng-container>
+
+                              <ng-container matColumnDef="returnedBy">
+                                  <th class="text-black  " mat-header-cell *matHeaderCellDef><h5>
+                                      <b>Returned by</b>
+                                  </h5></th>
+                                  - <td class=""   mat-cell *matCellDef="let element"> {{element.returnedBy}} </td>
+                              </ng-container>
+
+                              <ng-container matColumnDef="returnedDate">
+                                  <th class="text-black  " mat-header-cell *matHeaderCellDef><h5>
+                                      <b>Date returned</b>
+                                  </h5></th>
+                                  - <td class=""   mat-cell *matCellDef="let element"> {{element.dateReturned | date: 'MMM d, y, h:mm:ss '}} </td>
+                              </ng-container>
+
+                              <ng-container matColumnDef="confirm" >
+                                  <th class="text-black " mat-header-cell *matHeaderCellDef ><h5><b>
+                                  </b></h5></th>
+                                  <td  class="" style="color: #0b75c9" mat-cell *matCellDef="let element">
+                                <span *ngIf="element.received == false " (click)="confirm(element)"> Confirm Receiving Asset   <button
+                                        mat-raised-button type="button" matTooltip="view asset "
+                                        [matTooltipPosition]="'above'"
+                                        class="btn btn-info btn-link btn-sm btn-just-icon">
+                                            <i class="material-icons"> check </i>
+                                        </button></span>
+                                  </td>
+
+                              </ng-container>
+
+                              <tr mat-header-row *matHeaderRowDef="assetColumns"></tr>
+                              <tr mat-row *matRowDef="let row; columns: assetColumns;"></tr>
+                          </table>
+
+
+                      </div>
+
+                  </div>
+                  <mat-paginator
+                      #assetsPaginator = "matPaginator"
+                      [pageSizeOptions]="[1, 5, 10]"
+                      [pageSize]="5"
+                      [length]="assetsDataSource.data.length"
+                      showFirstLastButtons >
+                  </mat-paginator>
+              </div>
+              </div>
+          </div>
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+
+
+

@@ -1,0 +1,63 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h3 class="card-category"> Assets</h3>
+                        <h4 class="card-description">Assets assigned to {{data.username}}</h4>
+                    </div>
+
+                    <div class="card-body">
+                        <div class=" align-center table-container">
+                            <table class="table" mat-table [dataSource]="assetsDataSource" >
+                                <!-- Account Number Column -->
+                                <ng-container matColumnDef="asset-name">
+                                    <th class="text-black  " mat-header-cell *matHeaderCellDef><h5>
+                                        <b>Name</b>
+                                    </h5></th>
+                                    - <td class=""   mat-cell *matCellDef="let element"> {{element.name}} </td>
+                                </ng-container>
+
+                                <!-- Account Name Column -->
+                                <ng-container matColumnDef="asset-make">
+                                    <th class="text-black  " mat-header-cell *matHeaderCellDef><h5>
+                                        <b>Make </b>
+                                    </h5></th>
+                                    <td class=""  mat-cell *matCellDef="let element"> {{element.make}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="asset-model">
+                                    <th class="text-black  " mat-header-cell *matHeaderCellDef><h5>
+                                        <b>Model </b>
+                                    </h5></th>
+                                    <td class=""  mat-cell *matCellDef="let element"> {{element.model}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="asset-serial-number">
+                                    <th class="text-black  " mat-header-cell *matHeaderCellDef><h5>
+                                        <b>Serial Number </b>
+                                    </h5></th>
+                                    <td class=""  mat-cell *matCellDef="let element"> {{element.serialNumber}} </td>
+                                </ng-container>
+
+                                <tr mat-header-row *matHeaderRowDef="assetColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: assetColumns;"></tr>
+                            </table>
+
+
+                        </div>
+                        <mat-paginator
+                            #assetPaginator = "matPaginator"
+                            [pageSizeOptions]="[1, 5, 10]"
+                            [pageSize]="5"
+                            [length]="assetsDataSource.data.length"
+                            showFirstLastButtons >
+                        </mat-paginator>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

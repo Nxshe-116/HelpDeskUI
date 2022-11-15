@@ -1,0 +1,83 @@
+<div class="main-content">
+    <div class="col-sm"> <a (click) ="addAssetType()"  class="btn btn-info btn-round ">Add Asset Type</a> </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h3 class="card-category"> A list of asset type</h3>
+                    </div>
+                    <div class="card-body">
+                        <br>
+                        <div>
+                            <mat-form-field class="col-md-6">
+                                <mat-label>Search for the asset type...</mat-label>
+                                <input matInput (keyup)="assetTypeFilter($event)" placeholder="e.g. Lenovo">
+                            </mat-form-field>
+                        </div>
+                        <div class=" align-center table-container">
+                            <table class="table" mat-table [dataSource]="assetTypeDataSource" >
+                                  <!-- Account Number Column -->
+                                <ng-container matColumnDef="asset-type-name">
+                                    <th class="text-black  px-lg-5" mat-header-cell *matHeaderCellDef><h5>
+                                        <b>Name</b>
+                                    </h5></th>
+                                   - <td class="px-lg-5"   mat-cell *matCellDef="let element"> {{element.name}} </td>
+                                </ng-container>
+
+                                <!-- Account Name Column -->
+                                <ng-container matColumnDef="asset-type-description">
+                                    <th class="text-black  px-lg-5" mat-header-cell *matHeaderCellDef><h5>
+                                        <b>Description </b>
+                                    </h5></th>
+                                <td class="px-lg-5"  mat-cell *matCellDef="let element"> {{element.description}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="edit">
+                                    <th class="text-black  px-lg-5" mat-header-cell *matHeaderCellDef><h5><b> Edit
+                                    </b></h5></th>
+                                    <td class="px-lg-5  text-primary" style="color: forestgreen"  mat-cell *matCellDef="let element"
+                                    >
+                                <span (click)="openEditType(element)"> Edit <button
+                                        mat-raised-button type="button" matTooltip="Edit "
+                                        [matTooltipPosition]="'above'"
+                                        class="btn btn-primary btn-link btn-sm btn-just-icon">
+                                            <i class="material-icons">edit</i>
+                                        </button></span>
+                             </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="delete" >
+                                    <th class="text-black px-lg-5" mat-header-cell *matHeaderCellDef ><h5><b>
+                                        Delete  </b></h5></th>
+                                    <td  class="px-lg-5 " style="color: red" mat-cell *matCellDef="let element"
+                                    >
+                                <span (click)="deleteAssetType(element)"> Delete    <button
+                                        mat-raised-button type="button" matTooltip="Delete"
+                                        [matTooltipPosition]="'above'"
+                                        class="btn btn-danger btn-link btn-sm btn-just-icon">
+                                            <i class="material-icons">delete   </i>
+                                        </button></span>
+                           </td>
+
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="assetTypeColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: assetTypeColumns;"></tr>
+                            </table>
+
+
+                        </div>
+                        <mat-paginator #assetTypePaginator = "matPaginator"
+                                       [length]="pageLength"
+                                       [pageSize]="5"
+                                       [pageSizeOptions]="[1,5,10]"
+                                       showFirstLastButtons
+                                       aria-label="Select page">
+                        </mat-paginator>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

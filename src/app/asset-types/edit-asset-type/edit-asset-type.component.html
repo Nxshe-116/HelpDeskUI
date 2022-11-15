@@ -1,0 +1,36 @@
+<div class="main-content">
+
+    <div class="container-fluid">
+        <div class="col-md-auto">
+            <div class="card">
+                <div class="card-header card-header-info">
+                    <h3 class="card-title font-weight-bold"> Edit Asset Type : {{message.message}}</h3>
+                    <h4 class="card-description">ID:  {{message.title}} </h4>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="editAssetTypeForm" (ngSubmit)="onSubmit()">
+
+                        <mat-form-field appearance="fill">
+
+                            <mat-label>Id</mat-label>
+                            <input matInput formControlName="ID" placeholder="{{message.title}}">
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+
+                            <mat-label>Name</mat-label>
+                            <input matInput formControlName="Name" placeholder="{{message.message}}">
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Description</mat-label>
+                            <textarea matInput formControlName="description"></textarea>
+                        </mat-form-field>
+
+                        <button mat-raised-button  class="btn btn-info pull-right btn-round">Edit Asset Type </button>
+                        <button mat-raised-button (click)= "closeDialog()" class=" btn-round btn btn-danger pull-right ">Cancel</button>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
